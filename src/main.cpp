@@ -1,7 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 #include <Geode/modify/PlayLayer.hpp>
-
 using namespace geode::prelude;
 
 bool should_key_jump(int key) {
@@ -20,13 +19,13 @@ bool is_player1(int key) {
     return p1_keys.find(key) != p1_keys.end();
 }
 class $modify(CCKeyboardDispatcher) {
-    public:
     bool dispatchKeyboardMSG(cocos2d::enumKeyCodes enumKey, bool down, bool arr) {
         int key = static_cast<int>(enumKey);
     auto play_layer = PlayLayer::get();
     if (play_layer && should_key_jump(key)) {
         auto is_practice_mode = play_layer->m_isPracticeMode;
-        if (!is_practice_mode || (key != 'Z' && key != 'X')) {
+        auto is_platformer = play_layer->m_levelSettings->m_platformerMode;
+        if ((!is_practice_mode || (key != 'Z' && key != 'X')) && ((key != 'A' && key != 'D') || !is_platformer)) {
             bool player1 = true;
             if (key == 0x10) {
                 bool left_shift = GetAsyncKeyState(VK_LSHIFT) < 0;
