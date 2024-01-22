@@ -1,0 +1,9 @@
+{
+	"geode": "2.0.0-beta.4",
+	"version": "v1.0.0",
+	"id": "zilko.every_key_jumps",
+	"gd": "*",
+	"name": "Every Key Jumps",
+	"developer": "Zilko",
+	"description": "Every key performs a jump."
+}
