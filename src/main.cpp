@@ -9,8 +9,17 @@ bool should_key_jump(int key) {
     key == 0x10 ||
     key == 0xBC ||
     key == 0xBE ||
-    key == 0x0D;
-}
+    key == 0x0D ||
+    key == 37 ||
+    key == 40 ||
+    key == 39 ||
+    key == 17 ||
+    key == 8 ||
+    key == 111 ||
+    key == 106 ||
+    key == 189 ||
+    key == 184;
+} //some extra keys
 
 static const std::set<int> p1_keys = {'1','2','3','4','5','Q','W','E','R','T','A','S','D','F','G','Z','X','C','V','B'};
 bool g_left_shift = false;
@@ -25,7 +34,7 @@ class $modify(CCKeyboardDispatcher) {
     if (play_layer && should_key_jump(key)) {
         auto is_practice_mode = play_layer->m_isPracticeMode;
         auto is_platformer = play_layer->m_levelSettings->m_platformerMode;
-        if ((!is_practice_mode || (key != 'Z' && key != 'X')) && ((key != 'A' && key != 'D') || !is_platformer)) {
+        if ((!is_practice_mode || (key != 'Z' && key != 'X')) && ((key != 'A' && key != 'D' && key != 37 && key != 39) || !is_platformer)) {
             bool player1 = true;
             if (key == 0x10) {
                 bool left_shift = GetAsyncKeyState(VK_LSHIFT) < 0;
